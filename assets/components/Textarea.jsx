@@ -9,6 +9,7 @@ const Textarea = ({name, label, value, onChange, placeholder="", error=""}) => {
                 onChange={onChange}
                 placeholder={placeholder || label}
                 name={name}
+                id={name}
                 className={"form-control" + (error && " is-invalid")}
             />
             {error && (

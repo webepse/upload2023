@@ -34,8 +34,34 @@ const AddProduct = (props) => {
         console.log(info)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
+        try{
+            console.log(info)
+            const bodyFormData = new FormData()
+            bodyFormData.append('name',info.name)
+            bodyFormData.append('description',info.description)
+            bodyFormData.append('price',info.price)
+            bodyFormData.append('image', info.image)
+            const config = {
+                headers: {
+                    'Content-type': 'multipart/form-data',
+                },
+            }
+
+            await Axios({
+                method: "post",
+                url: "http://127.0.0.1:8000/api/products/upload",
+                data: bodyFormData,
+                headers: { "Content-type":"multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substring(2)}
+            }).then(response => {
+                console.log(response.data)
+            })
+
+        }catch({response}){
+            console.log(response)
+        }
+
     }
 
     
