@@ -42,8 +42,13 @@ class UploadProductController extends AbstractController
 
             $data->setImage($newFilename);
         }
-        
+        $data->setName($request->request->get('name'));
+        $data->setDescription($request->request->get('description'));
+        $data->setPrice($request->request->get('price'));
 
+        $this->manager->persist($data);
+        $this->manager->flush();
 
+        return $data; 
     }
 }

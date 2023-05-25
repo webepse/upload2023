@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\Post;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
+use App\Controller\UploadProductController;
 use App\Repository\ProductRepository;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -14,7 +15,16 @@ use App\Repository\ProductRepository;
     operations: [
         new Get(),
         new Post(),
-        new Post()
+        new Post(
+            controller: UploadProductController::class,
+            uriTemplate: '/products/upload',
+            name: 'myPost',
+            openapiContext:[
+                "summary"=> "Ajouer un produit avec un fichier",
+                "description" => "Ajouter un produit avec un fichier"
+            ],
+            deserialize:false
+        )
     ]
 )]
 class Product
