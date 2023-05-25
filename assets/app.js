@@ -10,3 +10,31 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+import React from 'react';
+import ReactDom from 'react-dom/client';
+
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import AddProduct from './pages/AddProduct';
+import HomePage from './pages/HomePage';
+
+function App() {
+    return (
+        <Router>
+            <main className='container pt-5'>
+                <Routes>
+                    <Route path="/add-prod" element={<AddProduct />} />
+                    <Route path="/" element={<HomePage />}/>
+                </Routes>
+            </main>
+
+        </Router>
+    )
+}
+
+const root = ReactDom.createRoot(document.getElementById('app'))
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+)
+
