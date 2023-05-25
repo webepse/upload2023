@@ -4,6 +4,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import Field from '../components/Field'
 import Textarea from '../components/Textarea';
 
+
 const AddProduct = (props) => {
     const navigate = useNavigate()
 
